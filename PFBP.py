@@ -33,8 +33,8 @@ browser.get(url)
 browser.maximize_window()
 browser.implicitly_wait(15)
 browser.find_element_by_name("currentuserid").clear()
-browser.find_element_by_name("currentuserid").send_keys('admin')
-browser.find_element_by_name("password").send_keys('pfbp.hanhua.2017')
+browser.find_element_by_name("currentuserid").send_keys('')
+browser.find_element_by_name("password").send_keys('')
 browser.find_element_by_id("login_bt").click()
 
 failcount =0

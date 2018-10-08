@@ -5,7 +5,7 @@ import logging
 import logging.config
 
 def redmine(id):
-    url = 'http://10.10.80.228/redmine/issues/'+ str(id) +'.json'
+    url = 'http://local.redmine/issues/'+ str(id) +'.json'
     params = {'include': 'attachments,journals,changesets'}
     r=requests.get(url,params)
     r_js = r.json()
@@ -596,7 +596,7 @@ if __name__ == '__main__':
     id_file='nname.txt'
     author_file="author_file.txt"
 
-    jira = JIRA('http://172.30.0.108:8080/', basic_auth=('hongxiaomeng', 'hong123'))
+    jira = JIRA('url', basic_auth=('name', 'password'))
     sql_count=0
     for id in range(1011,1012):
         if str(id) not in read(id_file):

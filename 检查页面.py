@@ -14,7 +14,7 @@ logger.setLevel(logging.DEBUG)
 ch = logging.StreamHandler()
 ch.setLevel(logging.INFO)
 #输出到文件
-fh = logging.FileHandler("PFBP.log")
+fh = logging.FileHandler(".log")
 fh.setLevel(logging.INFO)
 #设置日志格式
 fomatter = logging.Formatter('%(asctime)s -%(name)s-%(levelname)s-%(module)s:%(message)s')
@@ -28,7 +28,7 @@ shutil.rmtree("./screen")
 os.mkdir("./screen")
 
 browser=webdriver.Ie()
-url="http://credit.hanhua.com"
+url="url"
 browser.get(url)
 browser.maximize_window()
 browser.implicitly_wait(15)

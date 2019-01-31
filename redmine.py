@@ -3,7 +3,7 @@ import requests
 import os
 import logging
 import logging.config
-
+#提交jenkins
 def redmine(id):
     url = 'http://local.redmine/issues/'+ str(id) +'.json'
     params = {'include': 'attachments,journals,changesets'}

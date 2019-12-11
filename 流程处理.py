@@ -14,7 +14,7 @@ profile = webdriver.FirefoxProfile(profile_dir)
 #登陆系统
 brower=webdriver.Firefox(profile)
 utils.Util.env['driver']= brower
-url='http://172.32.0.132/middlecenter/index.jsp'
+url=''
 brower.get(url)
 loginOa.login('sysadmin','1')
 time.sleep(3)

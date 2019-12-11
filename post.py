@@ -2,7 +2,7 @@
 import requests   #先导入包,这是必须的
 import json
 def post(Number,body):
-    url = 'http://172.30.0.98:32022/common/comm/v1/sms'  # url:接口地址
+    url = ''  # url:接口地址
     data = {
         'phoneNumber': Number,
         'invokeId': '201505121213341300123',

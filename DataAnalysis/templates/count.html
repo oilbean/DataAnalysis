@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bug统计</title>
+  <div class="page-header" style="padding-top: 60px;padding-left: 20px">
+        <div id="navbar_fabu" class="navbar-collapse collapse">
+            <form class="navbar-form" id="form1" >
+                <div class="form-group">
+                <!--<div class="form-group" method="get" action="/search_name/">-->
+                    <input name="name" type="text" placeholder="名称" class="form-control" id="name1">
+                </div>
+                <button  type="button" id="getlist" class="btn btn-success">搜索</button>
+                <td>
+                    <a href="/add_index/" class="btn btn-success">添加</a>
+                </td>
+            </form>
+        </div>
+    </div>
+    <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>用例名称</th>
+                        <th>所属项目</th>
+                        <th>描述</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for case in case_list %}
+                    <tr>
+                        <td>{{ case.case_id }}</td>
+                        <td>{{ case.case_name }}</td>
+                        <td prj_id="{{ case.project.prj_id }}">{{ case.project }}</td>
+                        <td>{{ case.description }}</td>
+                        <td>
+                            <button class="#runCaseForm btn btn-primary" onclick="debug_button(this);" data-toggle="modal" data-target="#runCaseForm">运行</button>
+                            <a href="" class="">编辑</a>
+                            <a href="" class="">删除</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+</head>
+<body>
+
+</body>
+</html>

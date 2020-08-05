@@ -1,50 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>bug统计</title>
-  <div class="page-header" style="padding-top: 60px;padding-left: 20px">
-        <div id="navbar_fabu" class="navbar-collapse collapse">
-            <form class="navbar-form" id="form1" >
-                <div class="form-group">
-                <!--<div class="form-group" method="get" action="/search_name/">-->
-                    <input name="name" type="text" placeholder="名称" class="form-control" id="name1">
-                </div>
-                <button  type="button" id="getlist" class="btn btn-success">搜索</button>
-                <td>
-                    <a href="/add_index/" class="btn btn-success">添加</a>
-                </td>
-            </form>
+{% extends "home.html" %}
+{#继承home.html页面#}
+
+{% block crumbs %}
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="/home">主页</a>
+                </li>
+                <li class="active">
+                    <a class="this">基础信息</a>
+                </li>
+                <li class="active">
+                    <a class="this-page">bug统计</a>
+                </li>
+            </ol>
+
         </div>
     </div>
-    <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>用例名称</th>
-                        <th>所属项目</th>
-                        <th>描述</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for case in case_list %}
-                    <tr>
-                        <td>{{ case.case_id }}</td>
-                        <td>{{ case.case_name }}</td>
-                        <td prj_id="{{ case.project.prj_id }}">{{ case.project }}</td>
-                        <td>{{ case.description }}</td>
-                        <td>
-                            <button class="#runCaseForm btn btn-primary" onclick="debug_button(this);" data-toggle="modal" data-target="#runCaseForm">运行</button>
-                            <a href="" class="">编辑</a>
-                            <a href="" class="">删除</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-</head>
-<body>
+{% endblock %}
 
-</body>
-</html>
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading">
+                   <a href="/serch/" class="btn btn-primary">查询</a>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>项目名称</th>
+                            <th>项目描述</th>
+                            <th>签名方式</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for prj in prj_list %}
+                            <tr>
+                                <td>{{ prj.prj_id }}</td>
+                                <td>{{ prj.prj_name }}</td>
+                                <td>{{ prj.description }}</td>
+                                <td>{{ prj.sign }}</td>
+                                <td>
+                                    <a href="/base/project_update?prj_id={{ prj.prj_id }}" class="layui-btn layui-btn-xs"
+                                       lay-event="edit">编辑</a>
+                                    <a href="/base/project_delete?prj_id={{ prj.prj_id }}"
+                                       class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

@@ -1,34 +1,11 @@
-{% extends "home.html" %}
-{#继承home.html页面#}
-
-{% block crumbs %}
-    <div class="row">
-        <div class="col-md-12">
-            <ol class="breadcrumb">
-                <li>
-                    <a href="/home">主页</a>
-                </li>
-                <li class="active">
-                    <a class="this">基础信息</a>
-                </li>
-                <li class="active">
-                    <a class="this-page">bug统计</a>
-                </li>
-            </ol>
-
-        </div>
-    </div>
-{% endblock %}
-
-{% block body %}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel">
-                <div class="panel-heading">
-                   <a type="button" id="serch" class="btn btn-primary">查询</a>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-bordered">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+    <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -53,10 +30,5 @@
                         {% endfor %}
                         </tbody>
                     </table>
-                </div>
-            </div>
-
-        </div>
-    </div>
-{% endblock %}
-
+</body>
+</html>

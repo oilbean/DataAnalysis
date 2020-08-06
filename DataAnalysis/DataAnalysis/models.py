@@ -244,10 +244,12 @@ class SignEvent(models.Model):
     start_time = models.DateTimeField()
     create_time = models.DateTimeField()
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         managed = False
         db_table = 'sign_event'
-
 
 class SignGuest(models.Model):
     realname = models.CharField(max_length=64)
@@ -269,3 +271,6 @@ class SignReg(models.Model):
     class Meta:
         managed = False
         db_table = 'sign_reg'
+
+def __str__(self):
+    return self.realname

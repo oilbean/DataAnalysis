@@ -23,5 +23,6 @@ urlpatterns = [
     path('',views.home),
     path('home/',views.home),
     url(r'^base/count/',views.count),
+    url(r'^search/$',views.search)
     # url("test/",views.serch)
 ]

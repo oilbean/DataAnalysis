@@ -1,74 +1,43 @@
 {% extends "home.html" %}
 {#继承home.html页面#}
 
-{% block crumbs %}
-    <div class="row">
-        <div class="col-md-12">
-            <ol class="breadcrumb">
-                <li>
-                    <a href="/home">主页</a>
-                </li>
-                <li class="active">
-                    <a class="this">基础信息</a>
-                </li>
-                <li class="active">
-                    <a class="this-page">查询</a>
-                </li>
-            </ol>
-
-        </div>
-    </div>
-{% endblock %}
-
 {% block body %}
-<!--搜索表单-->
-        <div id="navbar_fabu" class="navbar-collapse collapse">
-            <form class="navbar-form" method="get" action="/search/">
-                <div class="form-group">
-                <!--<div class="form-group" method="get" action="/search_name/">-->
-                    <input name="name" type="text" placeholder="名称" class="form-control">
-                    <input name="address" type="text" placeholder="地址" class="form-control">
+<!--面包屑-->
+    <span class="layui-breadcrumb" lay-separator="/" style="visibility: visible">
+        <a href="/">基础信息</a>
+        <span lay-separator="/">/</span>
+        <a href="/demo/">查询</a>
+        <span lay-separator="/">/</span>
+        <a><cite>编辑</cite></a>
+    </span>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+        <legend></legend>
+    </fieldset>
+    <!-- 列表-->
+    <div>
+        <form class="layui-form" action="/edit/" method="post">
+            <input name="id" hidden value ={{ event.id }} >
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 100px">项目名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" lay-verify="title" autocomplete="off" class="layui-input" value={{ event.name }} >
+                    </div>
                 </div>
-                <button type="submit" id="search" class="btn btn-success">搜索</button>
-            </form>
-{#                <td>#}
-{#                    <a href="/add_index/" class="btn btn-success">添加</a>#}
-{#                </td>#}
-        </div>
-<!--查询列表-->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel">
-                <div class="panel-body">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>项目名称</th>
-                            <th>项目地址</th>
-                            <th>状态</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for event in events %}
-                            <tr>
-                                <td>{{ event.id }}</td>
-                                <td>{{ event.name }}</td>
-                                <td>{{ event.address }}</td>
-                                <td>{{ event.status }}</td>
-                                <td>
-                                    <a href="" class="layui-btn layui-btn-xs">编辑</a>
-                                </td>
 
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                <div class="layui-form-item">
+                     <label class="layui-form-label" style="width: 100px">项目地址</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" lay-verify="title" autocomplete="off" class="layui-input" value={{ event.address }} >
+                    </div>
                 </div>
-            </div>
 
-        </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button  lay-submit="" lay-filter="demol" class="layui-btn layui-btn-dange"> 保存</button>
+                        <button type="reset" class="layui-btn layui-btn-dange">重置</button>
+                    </div>
+                </div>
+        </form>
     </div>
 {% endblock %}
 

@@ -26,5 +26,16 @@ def search(request):
 
     return render(request,"count.html",{"events":event_list})
 
+
+def edit(request):
+    if request.method == 'POST':
+        id= request.POST['id']
+        print(id)
+        name= request.POST['name']
+        pass
+
+    event = SignEvent.objects.filter(id=id)
+    return render(request,"edit.html",{"event":event})
+
 def paginator_view(request):
     pass

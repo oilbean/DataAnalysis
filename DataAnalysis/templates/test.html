@@ -6,29 +6,8 @@
 </head>
 <body>
     <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>项目名称</th>
-                            <th>项目地址</th>
-                            <th>状态</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for event in events %}
-                            <tr>
-                                <td>{{ event.id }}</td>
-                                <td>{{ event.name }}</td>
-                                <td>{{ event.address }}</td>
-                                <td>{{ event.status }}</td>
-                                <td>
-                                    <a href="" class="layui-btn layui-btn-xs">编辑</a>
-                                </td>
+    <input type="text" name="article_title" value={{ event.name }}>
 
-                            </tr>
-                        {% endfor %}
-                        </tbody>
                     </table>
 </body>
 </html>

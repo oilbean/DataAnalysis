@@ -244,9 +244,6 @@ class SignEvent(models.Model):
     start_time = models.DateTimeField()
     create_time = models.DateTimeField()
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         managed = False
         db_table = 'sign_event'

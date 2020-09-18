@@ -28,14 +28,23 @@ def search(request):
 
 
 def edit(request):
+
     if request.method == 'POST':
-        id= request.POST['id']
-        print(id)
+
+        id=request.POST['id']
         name= request.POST['name']
-        pass
+        address=request.POST['address']
+        status=request.POST['status']
+
+
+        SignEvent.objects.filter(id=id).update(name=name,address=address,status=status)
+
+        return HttpResponseRedirect("base/count/")
+
+    id = request.GET["event_id"]
 
     event = SignEvent.objects.filter(id=id)
-    return render(request,"edit.html",{"event":event})
+    return render(request,"edit.html",{"event":event[0]})
 
 def paginator_view(request):
     pass

@@ -15,8 +15,10 @@
     </fieldset>
     <!-- 列表-->
     <div>
-        <form class="layui-form" action="/edit/" method="post">
-            <input name="id" hidden value ={{ event.id }} >
+        <form name="con" class="layui-form" action="/edit/" method="post">{% csrf_token %}
+            <input id="id" name="id" hidden value ="{{ event.id }}" >
+
+
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="width: 100px">项目名称</label>
                     <div class="layui-input-inline">
@@ -25,16 +27,23 @@
                 </div>
 
                 <div class="layui-form-item">
-                     <label class="layui-form-label" style="width: 100px">项目地址</label>
+                    <label class="layui-form-label" style="width: 100px">项目地址</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="name" lay-verify="title" autocomplete="off" class="layui-input" value={{ event.address }} >
+                        <input type="text" name="address" lay-verify="title" autocomplete="off" class="layui-input" value="{{ event.address }}" >
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                     <label class="layui-form-label" style="width: 100px">项目状态</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="status" lay-verify="title" autocomplete="off" class="layui-input" value="{{ event.status }}" >
                     </div>
                 </div>
 
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button  lay-submit="" lay-filter="demol" class="layui-btn layui-btn-dange"> 保存</button>
-                        <button type="reset" class="layui-btn layui-btn-dange">重置</button>
+                        <button  lay-submit="" lay-filter="demol" class="layui-btn " lay-filter="demo1"> 保存</button>
+                        <button  type="reset" class="layui-btn " >重置</button>
                     </div>
                 </div>
         </form>

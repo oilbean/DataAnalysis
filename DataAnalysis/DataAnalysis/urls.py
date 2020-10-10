@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home),
     path('home/',views.home),
-    url(r'base/count/',views.count),
+    url(r'base/count/',views.paginator_view),
     url(r'^search/$',views.search),
     path('edit/',views.edit)
     # url("test/",views.edit)

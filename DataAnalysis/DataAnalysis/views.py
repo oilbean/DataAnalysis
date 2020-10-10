@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from DataAnalysis.models import SignEvent
 
@@ -47,4 +47,19 @@ def edit(request):
     return render(request,"edit.html",{"event":event[0]})
 
 def paginator_view(request):
-    pass
+
+    event_list = SignEvent.objects.all()
+    paginator = Paginator(event_list,2)
+
+    page = request.GET.get('page')
+
+    try:
+        contacts=paginator.page(page)
+    except PageNotAnInteger:
+        contacts = paginator.page(1)
+    except EmptyPage:
+        contacts = paginator.page(paginator.num_pages)
+
+    print(contacts)
+
+    return render(request,'count.html',{'contacts':contacts})

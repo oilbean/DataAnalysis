@@ -51,7 +51,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for event in contacts %}
+                        {% for event in events %}
                             <tr>
                                 <td>{{ event.id }}</td>
                                 <td>{{ event.name }}</td>
@@ -75,26 +75,26 @@
     <nav aria-label="Page navigation">
     <ul class="pagination" id="demo0">
             <!-- 如果contacts有上一页，则显示上一页箭头且修改链接地址-->
-            {% if contacts.has_previous %}
+            {% if events.has_previous %}
                 <li>
-                <a href="?page={{ contacts.previous_page_number }}" aria-label="Previous">
+                <a href="?page={{ events.previous_page_number }}" aria-label="Previous">
                 <span aria-hidden="true">&laquo;;</span>
                 </a>
                 </li>
             {% endif %}
             <!-- 生成导航标签页码-->
-            {% for pg in contacts.paginator.page_range %}
-                {% if contacts.number == pg %}
+            {% for pg in events.paginator.page_range %}
+                {% if events.number == pg %}
                     <!-- 将与view传来的页码相等的导航页码高亮-->
                     <li class="active"><a href="?page{{ pg }}">{{ pg }}</a></li>
                 {% else %}
-                    <li><a href="?page={{ pg }}">{{ pg }}</a></li>
+                    <li><a href="?name={{ name }}&address={{ address }}&page={{ pg }}">{{ pg }}</a></li>
                 {% endif %}
             {% endfor %}
             <!-- 如果有下一页，则显示下一页箭头且修改链接地址-->
-            {% if contacts.has_next %}
+            {% if events.has_next %}
                 <li>
-                <a href="?page={{ contacts.next_page_number }}" aria-label="Next">
+                <a href="?page={{ events.next_page_number }}" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
                 </a>
                 </li>
@@ -103,19 +103,5 @@
     </ul>
     </nav>
 
-
-
-{#    <script src="/static/vendor/layui/layui.js"></script>#}
-{#    <script>#}
-{#layui.use(['laypage', 'layer'], function() {#}
-{#    var laypage = layui.laypage, layer = layui.layer;#}
-{##}
-{#    //总页数低于页码总数#}
-{#    laypage.render({#}
-{#        elem: 'demo0'#}
-{#        , count: 50//数据总数#}
-{#    });#}
-{#})#}
-{#    </script>#}
 {% endblock %}
 

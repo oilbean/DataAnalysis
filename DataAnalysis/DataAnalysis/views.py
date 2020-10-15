@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from DataAnalysis.models import SignEvent
+from django.db import connection
 
 
 def home(request):
@@ -24,7 +25,22 @@ def search(request):
     #查询数据
     event_list=SignEvent.objects.filter(name__contains=search_name).filter(address__contains=search_add)
 
-    return render(request,"count.html",{"events":event_list})
+
+
+    paginator = Paginator(event_list, 2)
+
+    page = request.GET.get('page')
+
+    try:
+        event_list = paginator.page(page)
+    except PageNotAnInteger:
+        event_list = paginator.page(1)
+    except EmptyPage:
+        event_list = paginator.page(paginator.num_pages)
+
+    return render(request,"count.html",{"events":event_list,
+                                        "name":search_name,
+                                        "address":search_add})
 
 
 def edit(request):
@@ -54,12 +70,32 @@ def paginator_view(request):
     page = request.GET.get('page')
 
     try:
-        contacts=paginator.page(page)
+        events=paginator.page(page)
     except PageNotAnInteger:
-        contacts = paginator.page(1)
+        events = paginator.page(1)
     except EmptyPage:
-        contacts = paginator.page(paginator.num_pages)
+        events = paginator.page(paginator.num_pages)
 
-    print(contacts)
 
-    return render(request,'count.html',{'contacts':contacts})
+    return render(request,'count.html',{'events':events})
+
+def sql(request):
+    cursor = connection.cursor()
+    cursor.execute("select * from sign_event")
+    raw=cursor.fetchall()
+
+    print(raw)
+    paginator = Paginator(raw, 2)
+
+    page = request.GET.get('page')
+
+    try:
+        events = paginator.page(page)
+    except PageNotAnInteger:
+        events = paginator.page(1)
+    except EmptyPage:
+        events = paginator.page(paginator.num_pages)
+
+    print("%%%%%%%%%%")
+    print(events)
+    return render(request, 'count.html', {'events': events})

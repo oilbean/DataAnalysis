@@ -80,11 +80,26 @@ def paginator_view(request):
     return render(request,'count.html',{'events':events})
 
 def sql(request):
-    cursor = connection.cursor()
-    cursor.execute("select * from sign_event")
-    raw=cursor.fetchall()
+    search_name=request.GET.get("name",'')
 
-    print(raw)
+    search_add=request.GET.get("address",'')
+
+    if not search_name and not search_add:
+        sql="select * from sign_event"
+    elif not search_name:
+        sql="select * from sign_event where assress=%s,"
+
+        pass
+
+    sql="select * from sign_event where name=%s[]"
+
+    print(search_name)
+
+    cursor = connection.cursor()
+    cursor.execute("select * from sign_event where name=%s",[search_name])
+
+    raw=dictfetch(cursor)
+
     paginator = Paginator(raw, 2)
 
     page = request.GET.get('page')
@@ -96,6 +111,15 @@ def sql(request):
     except EmptyPage:
         events = paginator.page(paginator.num_pages)
 
-    print("%%%%%%%%%%")
-    print(events)
     return render(request, 'count.html', {'events': events})
+
+
+def dictfetch(row):
+    #将SQL查询结果转换成字典
+    desc = row.description
+
+    return [
+        dict(zip([col[0] for col in desc], row))
+        for row in row.fetchall()
+    ]
+

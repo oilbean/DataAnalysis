@@ -23,7 +23,8 @@ urlpatterns = [
     path('',views.home),
     path('home/',views.home),
     url(r'base/count/',views.sql),
-    url(r'^search/$',views.search),
+    url(r'^search/',views.sql),
+    # url(r'^search/$',views.search),
     path('edit/',views.edit),
     # url("test/",views.edit)
 ]
